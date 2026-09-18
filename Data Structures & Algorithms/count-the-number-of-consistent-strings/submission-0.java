@@ -1,0 +1,34 @@
+class Solution {
+    public int countConsistentStrings(String allowed, String[] words) {
+        boolean[] allowedChars = new boolean[26];
+
+        // Store allowed characters
+        for (int i = 0; i < allowed.length(); i++) {
+            allowedChars[allowed.charAt(i) - 'a'] = true;
+        }
+
+        int count = 0;
+
+        // Check every word
+        for (String word : words) {
+
+            boolean consistent = true;
+
+            for (int i = 0; i < word.length(); i++) {
+
+                char ch = word.charAt(i);
+
+                if (!allowedChars[ch - 'a']) {
+                    consistent = false;
+                    break;
+                }
+            }
+
+            if (consistent) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+}
